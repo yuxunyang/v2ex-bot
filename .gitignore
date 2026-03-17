@@ -1,0 +1,36 @@
+# 二进制可执行文件
+v2ex_bot
+v2ex_bot_linux
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.txt
+bin
+
+# 敏感数据文件 (防止泄露你的 Cookie)
+*.txt
+!README.md
+
+# 这里的逻辑是排除所有 .txt，但如果你有说明文档 README.md 则保留。
+# 如果你专门把 Cookie 存在特定的文件名下，也可以直接写：
+# cookie.txt
+# v2ex.txt
+# glados.txt
+
+# 依赖管理
+vendor/
+
+# 操作系统临时文件
+.DS_Store
+Thumbs.db
+
+# 开发工具配置
+.idea/
+.vscode/
+*.swp
+*.patch
+
+# 日志文件
+*.log
