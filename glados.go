@@ -3,9 +3,12 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
+	"os"
 )
+
+var glog = log.New(os.Stdout, "[GLaDOS] ", log.Ldate|log.Ltime|log.Lmsgprefix)
 
 func runGLaDOS(cookie string, notifier Notifier) {
 	if cookie == "" {
@@ -32,7 +35,7 @@ func runGLaDOS(cookie string, notifier Notifier) {
 	}
 	json.NewDecoder(resp.Body).Decode(&result)
 
-	fmt.Printf("[GLaDOS] %s\n", result.Message)
+	glog.Printf("%s", result.Message)
 	if notifier != nil {
 		_ = notifier.Send("GLaDOS 签到", result.Message)
 	}

@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"math/rand"
+	"os"
 	"time"
 )
 
@@ -21,6 +23,10 @@ func main() {
 	maxSleepMin := flag.Int("sleep", 0, "最大随机睡眠时长 (分钟)，设置为 0 则不睡眠")
 
 	flag.Parse()
+
+	log.SetOutput(os.Stdout)
+	log.SetFlags(log.Ldate | log.Ltime)
+	log.Printf("程序启动")
 
 	// 2. 执行随机睡眠逻辑 (分钟转秒)
 	if *maxSleepMin > 0 {
@@ -47,7 +53,7 @@ func main() {
 
 	if *barkKey != "" {
 		multi.Notifiers = append(multi.Notifiers, &BarkNotifier{Key: *barkKey})
-		fmt.Println("已启用 Bark 通知")
+		log.Printf("已启用 Bark 通知")
 	}
 
 	if *tgToken != "" && *tgChatID != "" {
@@ -55,7 +61,7 @@ func main() {
 			Token:  *tgToken,
 			ChatID: *tgChatID,
 		})
-		fmt.Println("已启用 Telegram 通知")
+		log.Printf("已启用 Telegram 通知")
 	}
 
 	// 4. 执行任务逻辑

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -59,7 +60,7 @@ func readSecret(path string) string {
 	}
 	data, err := os.ReadFile(path)
 	if err != nil {
-		fmt.Printf("读取文件 [%s] 失败: %v\n", path, err)
+		log.Printf("读取文件 [%s] 失败: %v", path, err)
 		return ""
 	}
 	return strings.TrimSpace(string(data))
